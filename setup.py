@@ -19,7 +19,7 @@ $Id$
 from setuptools import setup, find_packages
 
 setup(name='zope.xmlpickle',
-      version='3.4dev',
+      version = '3.4.0b1',
       url='http://svn.zope.org/zope.xmlpickle',
       license='ZPL 2.1',
       description='Zope xmlpickle',
