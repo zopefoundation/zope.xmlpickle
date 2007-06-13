@@ -806,6 +806,14 @@ class xmlPickler(object):
         else:
             return (PERSID, ) + v
 
+    def persistent(self, tag, data):
+        v = tuple(data[2])
+        if  self.binary:
+            return v + (BINPERSID, )
+        else:
+            return (PERSID, ) + v
+
+
     def int(self, tag, data):
 
         object = ''.join(data[2:]).strip()
