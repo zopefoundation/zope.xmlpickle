@@ -18,6 +18,7 @@ $Id$
 
 from setuptools import setup, find_packages
 
+
 setup(name='zope.xmlpickle',
       version = '3.4.0b1',
       url='http://svn.zope.org/zope.xmlpickle',
@@ -30,6 +31,7 @@ setup(name='zope.xmlpickle',
 
       namespace_packages=['zope',],
       include_package_data = True,
+      install_requires=['setuptools'],
 
       zip_safe = False,
       )
