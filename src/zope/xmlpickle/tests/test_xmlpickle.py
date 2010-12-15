@@ -14,9 +14,11 @@
 """Tests of xmlpickle package
 
 """
+import doctest
 import pickle
 import unittest
 from zope.xmlpickle import dumps, loads
+
 
 class Test(unittest.TestCase):
 
@@ -251,7 +253,7 @@ class Test(unittest.TestCase):
 
 class Simple:
     """This class is expected to be a classic class."""
-    
+
     def __init__(self, *a):
         self.spam, self.eggs = a
 
@@ -264,12 +266,19 @@ class Simple:
     def __repr__(self):
         return '%s %r' % (self.__class__.__name__, self.__dict__)
 
+
 class WInitial(Simple):
     def __getinitargs__(self):
         return self.spam, self.eggs
 
-class newSimple(Simple, object): pass
-class newWInitial(WInitial, object): pass
+
+class newSimple(Simple, object):
+    pass
+
+
+class newWInitial(WInitial, object):
+    pass
+
 
 class DictSub(dict):
     def __eq__(self, other):
@@ -282,12 +291,9 @@ class DictSub(dict):
     def __ne__(self, other):
         return not self.__eq__(other)
 
+
 def test_suite():
-    from zope.testing.doctestunit import DocTestSuite
     return unittest.TestSuite((
         unittest.makeSuite(Test),
-        DocTestSuite('zope.xmlpickle.xmlpickle'),
+        doctest.DocTestSuite('zope.xmlpickle.xmlpickle'),
         ))
-
-if __name__=='__main__':
-    unittest.main(defaultTest='test_suite')
