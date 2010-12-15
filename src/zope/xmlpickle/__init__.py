@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2002 Zope Corporation and Contributors.
+# Copyright (c) 2002 Zope Foundation and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -19,7 +19,6 @@ The zope.xmlpickle package exports two functions:
 
   loads(xmlpickle) -- Returns an object loaded from the pickle.
 
-$Id$
 """
 from xmlpickle import dumps, loads
 from xmlpickle import fromxml, toxml

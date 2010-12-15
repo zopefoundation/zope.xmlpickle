@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2006 Zope Corporation and Contributors.
+# Copyright (c) 2006-2010 Zope Foundation and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -13,7 +13,6 @@
 ##############################################################################
 """Setup for zope.xmlpickle package
 
-$Id$
 """
 import os
 from setuptools import setup, find_packages

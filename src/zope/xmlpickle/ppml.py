@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2001 Zope Corporation and Contributors. All Rights Reserved.
+# Copyright (c) 2001 Zope Foundation and Contributors.
 #
 # This software is subject to the provisions of the Zope Public License,
 # Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
@@ -12,7 +12,6 @@
 ##############################################################################
 """Provide conversion between Python pickles and XML.
 
-$Id$
 """
 # TODO: This doesn't work properly for protocol 2 pickles yet; that
 # still needs to be dealt with.  Particular issues that need to be
