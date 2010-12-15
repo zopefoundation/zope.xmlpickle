@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2002 Zope Foundation and Contributors.
+# Copyright (c) 2002-2010 Zope Foundation and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -19,18 +19,19 @@ from xml.parsers import expat
 from cStringIO import StringIO
 from cPickle import loads as _standard_pickle_loads
 from pickle import \
-     Pickler as _StandardPickler, \
      MARK as _MARK, \
      EMPTY_DICT as _EMPTY_DICT, \
      DICT as _DICT, \
      SETITEM as _SETITEM, \
      SETITEMS as _SETITEMS
-
 from zope.xmlpickle import ppml
+import pickle
 
-class _PicklerThatSortsDictItems(_StandardPickler):
+
+class _PicklerThatSortsDictItems(pickle.Pickler):
+
     dispatch = {}
-    dispatch.update(_StandardPickler.dispatch)
+    dispatch.update(pickle.Pickler.dispatch)
 
     def save_dict(self, object):
         d = id(object)
@@ -67,10 +68,12 @@ class _PicklerThatSortsDictItems(_StandardPickler):
 
     dispatch[dict] = save_dict
 
+
 def _dumpsUsing_PicklerThatSortsDictItems(object, bin = 0):
     file = StringIO()
     _PicklerThatSortsDictItems(file, bin).dump(object)
     return file.getvalue()
+
 
 def toxml(p, index=0):
     """Convert a standard Python pickle to xml
@@ -95,7 +98,7 @@ def toxml(p, index=0):
     >>> s = f.getvalue()
 
     You can supply indexes to access individual pickles:
-    
+
     >>> print toxml(s).strip()
     <?xml version="1.0" encoding="utf-8" ?>
     <pickle>
@@ -138,12 +141,14 @@ def toxml(p, index=0):
     r = ['<?xml version="1.0" encoding="utf-8" ?>\n']
     xmlob.output(r.append)
     return ''.join(r)
-    
+
+
 def dumps(ob):
     """Serialize an object to XML
     """
     p = _dumpsUsing_PicklerThatSortsDictItems(ob, 1)
     return toxml(p)
+
 
 def fromxml(xml):
     """Convert xml to a standard Python pickle
@@ -157,6 +162,7 @@ def fromxml(xml):
     pickle = handler.get_value()
     pickle = str(pickle)
     return pickle
+
 
 def loads(xml):
     """Create an object from serialized XML
